@@ -34,7 +34,7 @@ Default execution time is 10:00 .
 #### Specific time
 
 ```PowerShell
-PS> install.ps1 -ExecutionDateTime '18:00'
+PS> install.ps1 -ExecutionTime '18:00'
 ```
 
 ### Uninstallation

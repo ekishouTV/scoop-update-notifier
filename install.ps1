@@ -1,5 +1,5 @@
 param(
-    [string]$ExecutionDateTime = '10:00'
+    [string]$ExecutionTime = '10:00'
 )
 
 Set-Location $PSScriptRoot
@@ -9,6 +9,6 @@ $scriptName = 'execute-on-task-scheduler.vbs'
 
 $action = New-ScheduledTaskAction -Execute (Convert-Path $scriptName)
 $settings = New-ScheduledTaskSettingsSet -Hidden -AllowStartIfOnBatteries -StartWhenAvailable
-$trigger = New-ScheduledTaskTrigger -DaysInterval 1 -Daily -At $ExecutionDateTime
+$trigger = New-ScheduledTaskTrigger -DaysInterval 1 -Daily -At $ExecutionTime
 
 Register-ScheduledTask -User $env:USERNAME -TaskName $taskName -Action $action -Settings $settings -Trigger $trigger
