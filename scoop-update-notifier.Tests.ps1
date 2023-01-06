@@ -7,8 +7,8 @@ BeforeAll {
     Remove-Item Alias:Notify-Update
     Remove-Item "function:/f"
 
-    if (Test-Path .\previous-updates) {
-        Remove-Item .\previous-updates
+    if (Test-Path '.\previous-updates') {
+        Remove-Item '.\previous-updates'
     }
     
     Mock scoop.cmd {} -ParameterFilter { $args[0] -eq 'update' }
