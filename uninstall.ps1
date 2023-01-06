@@ -1,1 +1,1 @@
-Unregister-ScheduledTask scoop-update-notifier
+Unregister-ScheduledTask 'scoop-update-notifier'
