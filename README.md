@@ -1,6 +1,6 @@
 # scoop-update-notifier
 
-Notify whether update installed app by [Scoop](https://github.com/ScoopInstaller/Scoop) via [toast](https://learn.microsoft.com/en-us/windows/apps/design/shell/tiles-and-notifications/toast-notifications-overview).
+Notify whether or not an update for an installed app by [Scoop](https://github.com/ScoopInstaller/Scoop) via [toast](https://learn.microsoft.com/en-us/windows/apps/design/shell/tiles-and-notifications/toast-notifications-overview).
 
 ## Prerequisites
 
