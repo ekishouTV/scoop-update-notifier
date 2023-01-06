@@ -8,7 +8,7 @@
 function Notify-Update {
     Set-Location $PSScriptRoot
 
-    scoop update > $null
+    scoop update
     $updates = scoop status
 
     $message = 'Up to date!'
