@@ -9,7 +9,7 @@ function Notify-Update {
     Set-Location $PSScriptRoot
 
     scoop update
-    $updates = scoop status
+    $updates = scoop status | Where-Object Info -NotMatch 'Held package'
 
     $message = 'Up to date!'
 

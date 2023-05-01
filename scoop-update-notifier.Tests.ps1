@@ -16,7 +16,7 @@ BeforeAll {
 
 Describe "scoop-update-notifier" {
     It "Up to date!" {
-        Mock scoop.cmd {} -ParameterFilter { $args[0] -eq 'status' }
+        Mock scoop.cmd { [PSCustomObject]@{Name = 'hoge'; Info = 'Held package' } } -ParameterFilter { $args[0] -eq 'status' }
         Notify-Update | Should -Be 'Up to date!'
     }
 
@@ -24,17 +24,22 @@ Describe "scoop-update-notifier" {
         @{sameAsPrevious = 'Not same as previous.'; message = 'There is an update.' }
         @{sameAsPrevious = 'Same as previous.'; message = 'There is an update.&#x0A;Should be update!' }
     ) {
-        Mock scoop.cmd { [PSCustomObject]@{Name = 'hoge' } } -ParameterFilter { $args[0] -eq 'status' }
+        Mock scoop.cmd { 
+            (
+                [PSCustomObject]@{Name = 'hoge'; Info = 'Held package' },
+                [PSCustomObject]@{Name = 'fuga' }
+            )
+        } -ParameterFilter { $args[0] -eq 'status' }
         Notify-Update | Should -Be $message
     }
 
     It "There are updates. <sameAsPrevious>" -ForEach @(
-        @{sameAsPrevious = 'Not same as previous.'; message = 'There are 3 updates.' }
-        @{sameAsPrevious = 'Same as previous.'; message = 'There are 3 updates.&#x0A;Should be update!' }
+        @{sameAsPrevious = 'Not same as previous.'; message = 'There are 2 updates.' }
+        @{sameAsPrevious = 'Same as previous.'; message = 'There are 2 updates.&#x0A;Should be update!' }
     ) {
         Mock scoop.cmd {
             (
-                [PSCustomObject]@{Name = 'hoge' },
+                [PSCustomObject]@{Name = 'hoge'; Info = 'Held package' },
                 [PSCustomObject]@{Name = 'fuga' },
                 [PSCustomObject]@{Name = 'piyo' }
             )
